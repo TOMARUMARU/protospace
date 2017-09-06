@@ -7,8 +7,8 @@
 ` has_many :prototypes, has_many :Likes, has_many :Comments `
 
 ### table
-- username :string, null: false
-- avatar :text
+- name :string, null: false
+- avatar :string
 - email :text, null: false, unique: true
 - member :string
 - profile :text
@@ -19,13 +19,14 @@
 ## *Prototype*
 
 ### association
-` belongs_to :user, has_many :images, has_many :likes, has_many :comments `
+` belongs_to :user, has_many :images, :likes, :comments, dependent: :destroy `
 
 ### table
-- title :string
-- catch_copy :text
+- title :string, null: false
+- catch_copy :string
 - concept :string
-- user_id :references, foreign_key: true
+- user :references, foreign_key: true
+- likes_count :integer
 
 
 ## *Image*
@@ -33,19 +34,19 @@
 ### association
 ` belongs_to :prototype `
 
-### tabl
-- url :text
-- prototype_id :references, foreign_key: true
+### table
+- url :text, null: false
+- prototype :references, foreign_key: true
 
 
 ## *Like*
 
 ### association
-` belongs_to :user, belngs_to :prototype `
+` belongs_to :user, belngs_to :prototype, counter_cache: true `
 
 ### table
-- user_id :references, foreign_key: true
-- prototype_id :references, foreign_key: true
+- user :references, foreign_key: true
+- prototype :references, foreign_key: true
 
 
 ## *Comment*
@@ -55,6 +56,6 @@
 
 
 ### table
-- content :text
-- user_id :references, foreign_key: true
-- protype_id :references, foreign_key: true
+- content :text, null: false
+- user :references, foreign_key: true
+- protype :references, foreign_key: true
