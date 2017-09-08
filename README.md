@@ -4,7 +4,7 @@
 
 ### association
 
-` has_many :prototypes, has_many :Likes, has_many :Comments `
+` has_many :prototypes, :likes, :comments, dependent: :destroy `
 
 ### table
 - name :string, null: false
@@ -26,7 +26,7 @@
 - catch_copy :string
 - concept :string
 - user :references, foreign_key: true
-- likes_count :integer
+- likes_count :integer, default: 0
 
 
 ## *Image*
