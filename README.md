@@ -4,7 +4,10 @@
 
 ### association
 
-` has_many :prototypes, :likes, :comments, dependent: :destroy `
+` has_many :prototypes,dependent: :destroy `
+` has_many :likes, dependent: :destroy `
+` has_many :comments, dependent: :destroy `
+
 
 ### table
 - name :string, null: false
@@ -19,7 +22,11 @@
 ## *Prototype*
 
 ### association
-` belongs_to :user, has_many :images, :likes, :comments, dependent: :destroy `
+` belongs_to :user `
+` has_many :images,dependent: :destroy `
+` has_many :likes, dependent: :destroy `
+` has_many :comments, dependent: :destroy `
+
 
 ### table
 - title :string, null: false
@@ -37,12 +44,14 @@
 ### table
 - url :text, null: false
 - prototype :references, foreign_key: true
-
+- status :integer, default: 0, limit: 1, null :false
 
 ## *Like*
 
 ### association
-` belongs_to :user, belngs_to :prototype, counter_cache: true `
+` belongs_to :user `
+` belngs_to :prototype `
+` counter_cache: likes_count `
 
 ### table
 - user :references, foreign_key: true
@@ -52,10 +61,11 @@
 ## *Comment*
 
 ### association
- ` belongs_to :user, belongs_to :prototype `
+` belongs_to :user `
+` belongs_to :prototype `
 
 
 ### table
-- content :text, null: false
+- content :string, null: false
 - user :references, foreign_key: true
 - protype :references, foreign_key: true
