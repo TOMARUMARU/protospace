@@ -36,13 +36,13 @@
 - likes_count :integer, default: 0
 
 
-## *Image*
+## *Proto_image*
 
 ### association
 ` belongs_to :prototype `
 
 ### table
-- url :text, null: false
+- image :text, null: false
 - prototype :references, foreign_key: true
 - status :integer, default: 0, limit: 1, null :false
 
