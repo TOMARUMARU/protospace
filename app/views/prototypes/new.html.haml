@@ -7,19 +7,23 @@
     %header.row.user-nav.row
       .col-md-12
         = f.text_field :title, placeholder: 'Title', class: 'proto-new-title'
-    .row
-      = f.fields_for :proto_images do |i|
+    = f.fields_for :proto_images do |i|
+      .row
         .col-md-12
           .cover-image-upload
             = i.file_field :image
         .col-md-12
           %ul.proto-sub-list.list-group
+          = f.fields_for :proto_images do |i|
             %li.list-group-item.col-md-4
               .image-upload
                 = i.file_field :image
+                = i.hidden_field :status, value: 1
+          = f.fields_for :proto_images do |i|
             %li.list-group-item.col-md-4
               .image-upload
                 = i.file_field :image
+                = i.hidden_field :status, value: 2
             %li.list-group-item.col-md-4
               .image-upload-plus
                 %span +
