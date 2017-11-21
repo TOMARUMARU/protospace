@@ -10,7 +10,6 @@ class PrototypesController < ApplicationController
   def create
     @prototype = current_user.prototypes.new(prototype_params)
     if @prototype.save
-      binding.pry
       redirect_to root_path, notice: "Post has been completed"
     else
       flash.now[:alert] = "Posting failed"

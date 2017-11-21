@@ -30,8 +30,8 @@
 
 ### table
 - title :string, null: false
-- catch_copy :string
-- concept :string
+- catch_copy :string, null: false
+- concept :string, null: false
 - user :references, foreign_key: true
 - likes_count :integer, default: 0
 
