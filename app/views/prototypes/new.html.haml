@@ -14,16 +14,8 @@
               = i.file_field :image
         .col-md-12
           %ul.proto-sub-list.list-group
-            %li.list-group-item.col-md-4
-              .image-upload
-                = f.fields_for :proto_images do |m|
-                  = m.file_field :image
-                  = m.hidden_field :status, value: 1
-            %li.list-group-item.col-md-4
-              .image-upload
-                = f.fields_for :proto_images do |g|
-                  = g.file_field :image
-                  = g.hidden_field :status, value: 2
+            = render partial: 'sub_image', locals: { f: f }
+            = render partial: 'sub_image', locals: { f: f }
             %li.list-group-item.col-md-4
               .image-upload-plus
                 %span +
