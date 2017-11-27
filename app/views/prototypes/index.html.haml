@@ -13,18 +13,18 @@
       %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
 .container.proto-list
   .row
-    - @prototypes.each do | pt |
+    - @prototypes.each do | prototype |
       .col-sm-4.col-md-3.proto-content
         .thumbnail
-          = link_to prototype_path(pt) do
-            = image_tag pt.proto_images.first.image.url
+          = link_to prototype_path(prototype) do
+            = image_tag prototype.proto_images.first.image.url
             .caption
-              %h3= pt.title
+              %h3= prototype.title
               .proto-meta
                 .proto-user
-                  = link_to "by #{pt.user.name}", user_path(pt.user)
+                  = link_to "by #{prototype.user.name}", user_path(prototype.user)
                 .proto-posted
-                  = pt.created_at.strftime("%b %d")
+                  = prototype.created_at.strftime("%b %d")
               %ul.proto-tag-list.list-inline
                 -# 以下タグ機能の時実装
                 %li
