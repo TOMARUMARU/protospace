@@ -1,5 +1,11 @@
 class PrototypesController < ApplicationController
   def index
+    @prototypes = Prototype.order('created_at DESC')
+  end
+
+  def show
+    @prototype = Prototype.find(params[:id])
+    @user = @prototype.user
   end
 
   def new
