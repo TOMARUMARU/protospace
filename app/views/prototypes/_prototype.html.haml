@@ -1,0 +1,17 @@
+.col-sm-4.col-md-3.proto-content
+  .thumbnail
+    = link_to prototype_path(prototype) do
+      = image_tag prototype.proto_images.first.image.url
+      .caption
+        %h3= prototype.title
+        .proto-meta
+          .proto-user
+            = link_to "by #{prototype.user.name}", user_path(prototype.user)
+          .proto-posted
+            = prototype.created_at.strftime("%b %d")
+        %ul.proto-tag-list.list-inline
+          -# 以下タグ機能の時実装
+          %li
+            %a{href: "#", class: "btn btn-default"} タグ1
+          %li
+            %a{href: "#", class: "btn btn-default"} タグ2
