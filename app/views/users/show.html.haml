@@ -27,6 +27,15 @@
     - @user.prototypes.each do |prototype|
       .col-sm-4.col-md-3.proto-content
         .thumbnail
+          - if user_signed_in? && current_user.id == prototype.user_id
+            .dropdown
+              %button.btn.btn-default.dropdown-toggle{ "data-toggle": "dropdown" }
+                ACTION
+              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                %li
+                  = link_to "  Delete", prototype_path(prototype), method: :delete
+                %li
+                  = link_to "  Edit", edit_prototype_path(prototype)
           = link_to prototype_path(prototype) do
             = image_tag prototype.proto_images.first.image.url
             .caption
