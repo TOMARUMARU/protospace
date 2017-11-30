@@ -6,9 +6,9 @@
           ACTION
         %ul.dropdown-menu{"aria-labelledby": "dropdownMenu1"}
           %li
-            = link_to "Delete", prototype_path(prototype), method: :delete, class: "drop-botton"
+            = link_to "Delete", prototype_path(prototype), method: :delete, class: "drop-button"
           %li
-            = link_to "Edit", edit_prototype_path(prototype), class: "drop-botton"
+            = link_to "Edit", edit_prototype_path(prototype), class: "drop-button"
     = link_to prototype_path(prototype) do
       = image_tag prototype.main_image
       .caption
