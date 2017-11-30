@@ -20,7 +20,7 @@
                 .image-upload
                   = f.fields_for :proto_images, sub do |m|
                     = image_tag sub.image.url, class: "image-upload"
-                    = m.file_field :image, value: sub.image
+                    = m.file_field :image
                     = m.hidden_field :status, value: :sub
             %li.list-group-item.col-md-4
               .image-upload-plus

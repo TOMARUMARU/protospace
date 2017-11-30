@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: %i(show edit update)
+  before_action :set_prototype, only: %i(show edit update destroy)
 
   def index
     @prototypes = Prototype.order('created_at DESC')
@@ -28,13 +28,17 @@ class PrototypesController < ApplicationController
   end
 
   def update
-    binding.pry
     if @prototype.update(prototype_params)
       redirect_to root_path, notice: "Update of post has been completed"
     else
       flash.now[:alert] = "Posting update failed"
       render :edit
     end
+  end
+
+  def destroy
+    @prototype.destroy
+    redirect_to root_path, notice: "Prototype was successfully deleted."
   end
 
   private
