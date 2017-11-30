@@ -10,7 +10,7 @@
           %li
             = link_to "Edit", edit_prototype_path(prototype), class: "drop-botton"
     = link_to prototype_path(prototype) do
-      = image_tag prototype.proto_images.first.image.url
+      = image_tag prototype.main_image
       .caption
         %h3= prototype.title
         .proto-meta

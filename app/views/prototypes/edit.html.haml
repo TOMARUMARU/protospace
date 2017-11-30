@@ -11,7 +11,7 @@
         .col-md-12
           .cover-image-upload
             = f.fields_for :proto_images, @prototype.proto_images.main do |i|
-              = image_tag @prototype.proto_images.main.first.image.url, class: "cover-image-upload"
+              = image_tag @prototype.main_image, class: "cover-image-upload"
               = i.file_field :image
         .col-md-12
           %ul.proto-sub-list.list-group
