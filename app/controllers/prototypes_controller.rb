@@ -1,10 +1,11 @@
 class PrototypesController < ApplicationController
+  before_action :set_prototype, only: %i(show edit update)
+
   def index
     @prototypes = Prototype.order('created_at DESC')
   end
 
   def show
-    @prototype = Prototype.find(params[:id])
     @user = @prototype.user
   end
 
@@ -23,8 +24,25 @@ class PrototypesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    binding.pry
+    if @prototype.update(prototype_params)
+      redirect_to root_path, notice: "Update of post has been completed"
+    else
+      flash.now[:alert] = "Posting update failed"
+      render :edit
+    end
+  end
+
   private
   def prototype_params
-    params.require(:prototype).permit(:title, :catch_copy, :concept, proto_images_attributes: [:image, :status])
+    params.require(:prototype).permit(:title, :catch_copy, :concept, proto_images_attributes: [:id, :image, :status])
+  end
+
+  def set_prototype
+    @prototype = Prototype.find(params[:id])
   end
 end
