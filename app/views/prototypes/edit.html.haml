@@ -1,0 +1,44 @@
+= form_for @prototype, html: { class: 'container proto-new'} do |f|
+  - if @prototype.errors.any?
+    %ul
+      - @prototype.errors.full_messages.each do |msg|
+        %li= msg
+  .col-md-8.col-md-offset-2
+    %header.row.user-nav.row
+      .col-md-12
+        = f.text_field :title, placeholder: 'Title', class: 'proto-new-title'
+      .row
+        .col-md-12
+          .cover-image-upload
+            = f.fields_for :proto_images, @prototype.proto_images.main do |i|
+              = image_tag @prototype.proto_images.main.first.image.url, class: "cover-image-upload"
+              = i.file_field :image
+        .col-md-12
+          %ul.proto-sub-list.list-group
+            - @prototype.proto_images.sub.each do | sub |
+              %li.list-group-item.col-md-4
+                .image-upload
+                  = f.fields_for :proto_images, sub do |m|
+                    = image_tag sub.image.url, class: "image-upload"
+                    = m.file_field :image, value: sub.image
+                    = m.hidden_field :status, value: :sub
+            %li.list-group-item.col-md-4
+              .image-upload-plus
+                %span +
+    .row.proto-description
+      .col-md-12
+        = f.text_field :catch_copy, placeholder: "Catch Copy"
+      .col-md-12
+        = f.text_area :concept, placeholder: "Concept", cols: 30, rows: 4
+      .col-md-12
+        %h4 Tag List
+        .row
+          -# 以下タグ機能の時実装
+          .col-md-3
+            %input{type: "text", placeholder: "Web Design"}/
+          .col-md-3
+            %input{type: "text", placeholder: "UI"}/
+          .col-md-3
+            %input{type: "text", placeholder: "Application"}/
+    .row.text-center.proto-btn
+      = f.submit "Publish", class: 'btn btn-lg btn-primary btn-block'
