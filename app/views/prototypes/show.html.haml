@@ -20,13 +20,12 @@
         %span.num 20
   .row
     .col-md-9
-      = image_tag @prototype.proto_images.first.image.url, class: 'img-responsive'
+      = image_tag @prototype.main_image, class: 'img-responsive'
     .col-md-3
       %ul.proto-sub-list.list-group
-        - @prototype.proto_images.each do | sub |
-          - if sub.status == "sub"
-            %li.list-group-item
-              = image_tag sub.image.url, class: 'img-responsive'
+        - @prototype.proto_images.sub.each do | sub |
+          %li.list-group-item
+            = image_tag sub.image.url, class: 'img-responsive'
   .row.proto-description
     .col-md-3
       %h4 Catch Copy
