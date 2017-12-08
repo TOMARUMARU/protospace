@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, ImageUploader
   validates :name, presence: true
   has_many :prototypes, dependent: :destroy
+  has_many :likes, dependent: :destroy
 end
