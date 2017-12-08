@@ -8,4 +8,9 @@ class Prototype < ActiveRecord::Base
   def main_image
     proto_images.main.first.image.url
   end
+
+  def likd_user(user_id)
+    likes.find_by(user_id: user_id)
+  end
+
 end
