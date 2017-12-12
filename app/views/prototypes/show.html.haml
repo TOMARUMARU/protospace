@@ -13,7 +13,8 @@
             %span.degree
               = @user.member
               = @user.works
-    = render partial: 'like', locals: { prototype: @prototype }
+    #js-like
+      = render partial: 'like', locals: { prototype: @prototype }
   .row
     .col-md-9
       = image_tag @prototype.main_image, class: 'img-responsive'
