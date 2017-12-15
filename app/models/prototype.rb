@@ -5,6 +5,9 @@ class Prototype < ActiveRecord::Base
   accepts_nested_attributes_for :proto_images, allow_destroy: true
   validates :title, :catch_copy, :concept, presence: true
 
+  scope :popular, -> { includes(:user).order('likes_count desc') }
+  scope :newest, -> { includes(:user).order('created_at desc') }
+
   def main_image
     proto_images.main.first.image.url
   end
