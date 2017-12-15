@@ -1,0 +1,2 @@
+class NewestsController < ApplicationController
+end
