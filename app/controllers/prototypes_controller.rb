@@ -7,6 +7,7 @@ class PrototypesController < ApplicationController
 
   def show
     @user = @prototype.user
+    @comment = Comment.new
   end
 
   def new
